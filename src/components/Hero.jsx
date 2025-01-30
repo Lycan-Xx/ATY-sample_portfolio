@@ -1,103 +1,71 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-scroll';
-import styled from 'styled-components';
+import { motion } from "framer-motion";
 
 const Hero = () => {
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Height of your fixed header
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
-    <Section id="home">
-      <Content>
+    <section
+      id="home"
+      className="min-h-screen flex items-center bg-gradient-to-r from-[#0A192F] to-[#020C1B] pt-20 px-6"
+    >
+      <div className="max-w-5xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Greeting>Hello, I'm Aliyu.</Greeting>
-          <Subtitle>I design stunning interiors and architectural models.</Subtitle>
+          {/* Hero Image */}
+          <div className="flex justify-center mb-6">
+            <img
+              src="https://picsum.photos/id/91/800/600"
+              alt="Aliyu Tasiu Yusuf"
+              className="rounded-lg shadow-lg max-w-full h-auto"
+            />
+          </div>
+
+          {/* Hero Text */}
+          <h1 className="text-5xl md:text-4xl font-playfair text-yellow-400 mb-4">
+            Hello, I'm Aliyu.
+          </h1>
+          <h2 className="text-2xl md:text-xl text-gray-300 font-lato mb-6">
+            I design stunning interiors and architectural models.
+          </h2>
         </motion.div>
 
-        <ButtonGroup>
-          <Button
-            to="portfolio"
-            smooth={true}
-            duration={500}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+        {/* Buttons */}
+        <motion.div
+          className="flex justify-center gap-6 mt-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <button
+            onClick={() => scrollToSection('portfolio')}
+            className="px-6 py-3 border-2 border-yellow-400 text-yellow-400 font-medium transition-all hover:bg-yellow-400 hover:text-[#0A192F] rounded-lg cursor-pointer"
           >
             View Portfolio
-          </Button>
-          <Button
-            to="contact"
-            smooth={true}
-            duration={500}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
+          </button>
+          <button
+            onClick={() => scrollToSection('contact')}
+            className="px-6 py-3 border-2 border-yellow-400 text-yellow-400 font-medium transition-all hover:bg-yellow-400 hover:text-[#0A192F] rounded-lg cursor-pointer"
           >
             Hire Me
-          </Button>
-        </ButtonGroup>
-      </Content>
-    </Section>
+          </button>
+        </motion.div>
+      </div>
+    </section>
   );
 };
-
-// Styled Components
-const Section = styled.section`
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  background: linear-gradient(45deg, #0A192F 0%, #020C1B 100%);
-  padding-top: 80px;
-`;
-
-const Content = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-`;
-
-const Greeting = styled.h1`
-  font-size: 4rem;
-  color: #FFD700;
-  margin-bottom: 1rem;
-  font-family: 'Playfair Display', serif;
-
-  @media (max-width: 768px) {
-    font-size: 3rem;
-  }
-`;
-
-const Subtitle = styled.h2`
-  font-size: 2rem;
-  color: #F8F8F8;
-  margin-bottom: 2rem;
-  font-family: 'Lato', sans-serif;
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
-`;
-
-const ButtonGroup = styled(motion.div)`
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 2rem;
-`;
-
-const Button = styled(Link)`
-  padding: 1rem 2rem;
-  background: transparent;
-  border: 2px solid #FFD700;
-  color: #FFD700;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-weight: 500;
-
-  &:hover {
-    background: #FFD700;
-    color: #0A192F;
-  }
-`;
 
 export default Hero;

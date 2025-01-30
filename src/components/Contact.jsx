@@ -1,150 +1,90 @@
-import { motion } from 'framer-motion';
-import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import styled from 'styled-components';
-import { FaPaperPlane } from 'react-icons/fa';
+import { motion } from "framer-motion";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import { FaPaperPlane } from "react-icons/fa";
 
 const Contact = () => {
   const form = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    emailjs.sendForm(
-      'YOUR_SERVICE_ID',
-      'YOUR_TEMPLATE_ID',
-      form.current,
-      'YOUR_PUBLIC_KEY'
-    )
-    .then(() => {
-      alert('Message successfully sent!');
-      form.current.reset();
-    }, (error) => {
-      alert('Failed to send the message, please try again.');
-    });
+
+    emailjs
+      .sendForm(
+        "YOUR_SERVICE_ID",
+        "YOUR_TEMPLATE_ID",
+        form.current,
+        "YOUR_PUBLIC_KEY"
+      )
+      .then(
+        () => {
+          alert("Message successfully sent!");
+          form.current.reset();
+        },
+        (error) => {
+          alert("Failed to send the message, please try again.");
+        }
+      );
   };
 
   return (
-    <Section id="contact">
-      <Container>
+    <section id="contact" className="py-32 bg-[#0A192F]">
+      <div className="max-w-3xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <Title>Get in Touch</Title>
-          <Form ref={form} onSubmit={handleSubmit}>
-            <InputGroup>
-              <Input 
-                type="text" 
-                name="name" 
-                placeholder="Your Name" 
-                required 
+          {/* Title */}
+          <h2 className="text-4xl font-playfair text-yellow-400 text-center mb-12">
+            Get in Touch
+          </h2>
+
+          {/* Form */}
+          <form
+            ref={form}
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-6"
+          >
+            {/* Name & Email */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required
+                className="p-4 border-2 border-yellow-400 bg-transparent text-white text-lg rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-300"
               />
-              <Input 
-                type="email" 
-                name="email" 
-                placeholder="Your Email" 
-                required 
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+                className="p-4 border-2 border-yellow-400 bg-transparent text-white text-lg rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-300"
               />
-            </InputGroup>
-            <TextArea 
-              name="message" 
-              placeholder="Your Message" 
-              rows="5" 
-              required 
+            </div>
+
+            {/* Message */}
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              rows="5"
+              required
+              className="p-4 border-2 border-yellow-400 bg-transparent text-white text-lg rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-300 resize-none"
             />
-            <SubmitButton type="submit">
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="flex items-center gap-3 px-6 py-3 bg-yellow-400 text-[#0A192F] font-semibold rounded-md mx-auto transition-transform duration-300 hover:-translate-y-1"
+            >
               Send Message <FaPaperPlane />
-            </SubmitButton>
-          </Form>
+            </button>
+          </form>
         </motion.div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 };
-
-// Styled Components
-const Section = styled.section`
-  padding: 8rem 0;
-  background: #0A192F;
-`;
-
-const Container = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
-`;
-
-const Title = styled.h2`
-  font-size: 3rem;
-  color: #FFD700;
-  text-align: center;
-  margin-bottom: 3rem;
-  font-family: 'Playfair Display', serif;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-`;
-
-const InputGroup = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-`;
-
-const Input = styled.input`
-  padding: 1rem;
-  border: 2px solid #FFD700;
-  background: transparent;
-  color: #fff;
-  font-size: 1rem;
-  border-radius: 5px;
-
-  &::placeholder {
-    color: rgba(255,255,255,0.7);
-  }
-`;
-
-const TextArea = styled.textarea`
-  padding: 1rem;
-  border: 2px solid #FFD700;
-  background: transparent;
-  color: #fff;
-  font-size: 1rem;
-  border-radius: 5px;
-  resize: vertical;
-
-  &::placeholder {
-    color: rgba(255,255,255,0.7);
-  }
-`;
-
-const SubmitButton = styled.button`
-  padding: 1rem 2rem;
-  background: #FFD700;
-  color: #0A192F;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: fit-content;
-  margin: 0 auto;
-  transition: transform 0.3s;
-
-  &:hover {
-    transform: translateY(-3px);
-  }
-
-  svg {
-    margin-left: 0.5rem;
-  }
-`;
 
 export default Contact;

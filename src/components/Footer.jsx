@@ -1,93 +1,65 @@
-import styled from 'styled-components';
-import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <FooterSection>
-      <Container>
-        <Content>
-          <Copyright>
+    <footer className="bg-[#0A192F] py-12 border-t border-yellow-400/10">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="flex flex-col items-center gap-6">
+          {/* Copyright */}
+          <p className="text-gray-300 text-sm text-center">
             &copy; 2025 Aliyu Tasiu Yusuf. All rights reserved.
-          </Copyright>
-          
-          <SocialLinks>
-            <SocialItem 
+          </p>
+
+          {/* Social Links */}
+          <ul className="flex gap-6">
+            <motion.li
               whileHover={{ y: -3 }}
               transition={{ duration: 0.2 }}
+              className="p-2"
             >
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer">
-                <FaLinkedin size={24} color="#FFD700" />
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+                className="text-yellow-400 transition-opacity duration-300 hover:opacity-80"
+              >
+                <FaLinkedin size={24} />
               </a>
-            </SocialItem>
-            
-            <SocialItem 
+            </motion.li>
+
+            <motion.li
               whileHover={{ y: -3 }}
               transition={{ duration: 0.2 }}
+              className="p-2"
             >
-              <a href="https://github.com" target="_blank" rel="noreferrer">
-                <FaGithub size={24} color="#FFD700" />
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noreferrer"
+                className="text-yellow-400 transition-opacity duration-300 hover:opacity-80"
+              >
+                <FaGithub size={24} />
               </a>
-            </SocialItem>
-            
-            <SocialItem 
+            </motion.li>
+
+            <motion.li
               whileHover={{ y: -3 }}
               transition={{ duration: 0.2 }}
+              className="p-2"
             >
-              <a href="mailto:contact@example.com">
-                <FaEnvelope size={24} color="#FFD700" />
+              <a
+                href="mailto:contact@example.com"
+                className="text-yellow-400 transition-opacity duration-300 hover:opacity-80"
+              >
+                <FaEnvelope size={24} />
               </a>
-            </SocialItem>
-          </SocialLinks>
-        </Content>
-      </Container>
-    </FooterSection>
+            </motion.li>
+          </ul>
+        </div>
+      </div>
+    </footer>
   );
 };
-
-// Styled Components
-const FooterSection = styled.footer`
-  background: #0A192F;
-  padding: 3rem 0;
-  border-top: 1px solid rgba(255, 215, 0, 0.1);
-`;
-
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-`;
-
-const Copyright = styled.p`
-  color: #F8F8F8;
-  font-size: 0.9rem;
-  text-align: center;
-`;
-
-const SocialLinks = styled.ul`
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-  padding: 0;
-`;
-
-const SocialItem = styled(motion.li)`
-  a {
-    display: flex;
-    padding: 0.5rem;
-    transition: opacity 0.3s;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-`;
 
 export default Footer;
