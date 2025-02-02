@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { Link } from 'react-scroll';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,14 +84,13 @@ function Navbar() {
               : 'hidden md:flex'
           }`}
         >
-          {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
+          {['home', 'about', 'portfolio', 'contact'].map((item) => (
             <li key={item} className="my-4 md:my-0">
-              <a
-                href={`#${item}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item);
-                }}
+              <Link
+                to={item}
+                smooth={true}
+                duration={500}
+                onClick={() => setIsOpen(false)}
                 className={`cursor-pointer transition-colors duration-300 ${
                   activeSection === item
                     ? 'text-yellow-400'
@@ -98,7 +98,7 @@ function Navbar() {
                 }`}
               >
                 {item.charAt(0).toUpperCase() + item.slice(1)}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
