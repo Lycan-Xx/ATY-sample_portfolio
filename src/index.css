@@ -1,3 +1,35 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* styles.css */
+.animate-infinite-scroll {
+	animation: scroll 40s linear infinite;
+}
+
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+	color: #FFD700 !important;
+}
+
+.swiper-pagination-bullet-active {
+	background: #FFD700 !important;
+}
