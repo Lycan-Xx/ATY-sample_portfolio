@@ -13,7 +13,6 @@ const ProjectCard = ({ title, category, media, onClick }) => {
           alt={title}
           className="absolute top-0 left-0 w-full h-full object-cover"
         />
-        
         <div className="absolute inset-0 bg-[#0A192F]/80 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
           <h3 className="text-[#FFD700] text-xl font-semibold mb-2">{title}</h3>
           <p className="text-white text-sm">{category}</p>

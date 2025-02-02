@@ -33,3 +33,40 @@
 .swiper-pagination-bullet-active {
 	background: #FFD700 !important;
 }
+
+
+
+
+/* Tools logo image properties  */
+
+
+
+
+.revit-logo {
+	width: 150px;
+	/* Adjust the width */
+	height: auto;
+	/* Maintain aspect ratio */
+}
+
+.archicad-logo {
+	width: 150px;
+	/* Adjust the width */
+	height: auto;
+	/* Maintain aspect ratio */
+	border-radius: 1rem;
+}
+
+.autocad-logo {
+	width: 170px;
+	/* Adjust the width */
+	height: 170px;
+	/* Maintain aspect ratio */
+}
+
+.sketchup-logo {
+	width: 150px;
+	/* Adjust the width */
+	height: 150px;
+	/* Maintain aspect ratio */
+}
