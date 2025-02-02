@@ -87,7 +87,7 @@ function Navbar() {
           {['home', 'about', 'portfolio', 'contact'].map((item) => (
             <li key={item} className="my-4 md:my-0">
               <Link
-                to={item}
+                to={item === 'portfolio' ? 'portfolio' : item}
                 smooth={true}
                 duration={500}
                 onClick={() => setIsOpen(false)}

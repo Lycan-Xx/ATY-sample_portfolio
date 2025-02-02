@@ -1,10 +1,11 @@
+// ProjectCard.jsx
 import { motion } from "framer-motion";
 
-const ProjectCard = ({ title, category, media, onClick }) => {
+const ProjectCard = ({ title, category, media, onClick, className }) => {
   return (
     <motion.div
-      whileHover={{ scale: 1.05 }}
-      className="relative rounded-lg shadow-lg overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-xl"
+      whileHover={{ scale: 1.03 }}
+      className={`relative rounded-xl overflow-hidden group cursor-pointer transition-all duration-300 bg-white ${className}`}
       onClick={onClick}
     >
       <div className="relative w-full pt-[100%]">
@@ -13,7 +14,8 @@ const ProjectCard = ({ title, category, media, onClick }) => {
           alt={title}
           className="absolute top-0 left-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#0A192F]/80 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+        
+        <div className="absolute inset-0 bg-[#020c1b]/90 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
           <h3 className="text-[#FFD700] text-xl font-semibold mb-2">{title}</h3>
           <p className="text-white text-sm">{category}</p>
           <div className="flex mt-2">
