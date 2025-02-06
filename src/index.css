@@ -70,3 +70,25 @@
 	height: 150px;
 	/* Maintain aspect ratio */
 }
+
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+/* Ensure the carousel container hides overflow */
+.overflow-hidden {
+	overflow: hidden;
+}
+
+/* Carousel wrapper */
+.flex.w-max {
+	display: flex;
+	width: max-content;
+	animation: scroll 20s linear infinite;
+}

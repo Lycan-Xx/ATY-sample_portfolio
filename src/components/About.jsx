@@ -1,165 +1,88 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { 
-  FaDrawPolygon, 
-  FaCube, 
-  FaRulerCombined, 
-  FaRegBuilding, 
-  FaPalette, 
-  FaVectorSquare 
-} from "react-icons/fa";
+import background from "../assets/background-1.jpg"; // Fix import statement
 
-const AboutSection = () => (
+const About = () => (
   <section
     id="about"
-    className="min-h-screen flex flex-col justify-center bg-gray-100"
+    className="min-h-screen flex flex-col justify-center relative"
+    style={{
+      backgroundImage: `url(${background})`, // Use template literal with imported background
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed",
+    }}
   >
-    <div className="max-w-4xl mx-auto px-6">
-      {/* Section Title with entrance animation */}
+    {/* Reduced blur and opacity further */}
+    <div className="absolute inset-0 bg-gradient-to-r from-[#0A192F]/50 to-[#020C1B]/50 backdrop-blur-[1px]"></div>
+
+    <div className="max-w-6xl mx-auto px-6 relative z-10">
       <motion.h2
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-5xl font-playfair text-center text-[#0A192F] mb-8"
+        className="text-5xl font-playfair text-center mb-12 text-yellow-400"
       >
         About Me
       </motion.h2>
-      {/* About Text */}
-      <motion.div
-        className="space-y-6 mb-12"
-        initial={{ x: -50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <p className="text-xl text-gray-800 font-lato leading-relaxed">
-          I am a dedicated architecture student with over 5 years of professional
-          experience. I believe in creating spaces that harmonize functionality with
-          aesthetic appeal, combining modern design principles with sustainable
-          practices.
-        </p>
-        <p className="text-xl text-gray-800 font-lato leading-relaxed">
-          Proficient in tools like Revit, AutoCAD, and 3ds Max, I specialize in
-          transforming conceptual ideas into detailed technical plans and
-          photorealistic visualizations.
-        </p>
-      </motion.div>
-      {/* Personal Info with Image */}
-      <motion.div
-        className="flex flex-col md:flex-row items-center md:space-x-8"
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        {/* Personal Information List */}
-        <div className="flex-1 mb-8 md:mb-0">
-          <h3 className="text-2xl font-playfair text-[#0A192F] mb-4">
+
+      <div className="grid md:grid-cols-2 gap-8 items-start">
+        {/* Left Column - About Text */}
+        <motion.div
+          className="h-full"
+          initial={{ x: -50, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="bg-[#0A192F]/50 p-8 rounded-lg backdrop-blur-[1px] h-full border border-yellow-400">
+            <p className="text-xl font-lato leading-relaxed text-gray-300">
+              I am a dedicated architecture student with over 5 years of professional
+              experience. I believe in creating spaces that harmonize functionality with
+              aesthetic appeal, combining modern design principles with sustainable
+              practices.
+            </p>
+            <p className="text-xl font-lato leading-relaxed text-gray-300 mt-4">
+              Proficient in tools like Revit, AutoCAD, and 3ds Max, I specialize in
+              transforming conceptual ideas into detailed technical plans and
+              photorealistic visualizations.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Right Column - Personal Info */}
+        <motion.div
+          initial={{ x: 50, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="bg-[#0A192F]/50 p-8 rounded-lg backdrop-blur-[1px] h-full border border-yellow-400"
+        >
+          <h3 className="text-2xl font-playfair mb-6 text-yellow-400">
             Personal Information
           </h3>
-          <ul className="text-xl text-gray-700 font-lato space-y-2">
-            <li>
-              <span className="font-semibold">Name:</span> Aliyu Tasiu Yusuf
+          <ul className="text-xl font-lato space-y-4 text-gray-300">
+            <li className="flex items-center space-x-2">
+              <span className="font-semibold text-yellow-400">Name:</span>
+              <span>Aliyu Tasiu Yusuf</span>
             </li>
-            <li>
-              <span className="font-semibold">Age:</span> 24
+            <li className="flex items-center space-x-2">
+              <span className="font-semibold text-yellow-400">Age:</span>
+              <span>24</span>
             </li>
-            <li>
-              <span className="font-semibold">Educational Status:</span> Architecture
-              Student, Modibbo Adama University
+            <li className="flex flex-col space-y-1">
+              <span className="font-semibold text-yellow-400">Educational Status:</span>
+              <span>Architecture Student, Modibbo Adama University</span>
             </li>
-            <li>
-              <span className="font-semibold">Location:</span> Yola, Nigeria
+            <li className="flex items-center space-x-2">
+              <span className="font-semibold text-yellow-400">Location:</span>
+              <span>Yola, Nigeria</span>
             </li>
           </ul>
-        </div>
-        {/* Professional Architect Image */}
-        <div className="flex-1 flex justify-center">
-          <img
-            src="/images/architect.jpg"
-            alt="Professional Architect"
-            className="w-64 h-auto rounded-md shadow-lg object-cover"
-          />
-        </div>
-      </motion.div>
-    </div>
-  </section>
-);
-
-const SkillCard = ({ icon, title, description }) => (
-  <motion.div
-    className="bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-    initial={{ opacity: 0, scale: 0.8, x: 50 }}
-    whileInView={{ opacity: 1, scale: 1, x: 0 }}
-    transition={{ duration: 0.6 }}
-    viewport={{ once: true }}
-  >
-    <div className="flex items-center gap-4 mb-3">
-      <div className="flex items-center justify-center bg-yellow-400 rounded-full p-3">
-        {React.cloneElement(icon, { className: "text-gray-900 text-2xl" })}
+        </motion.div>
       </div>
-      <h4 className="text-lg font-semibold text-white">{title}</h4>
-    </div>
-    <p className="text-gray-300 text-sm">{description}</p>
-  </motion.div>
-);
-
-const SkillsSection = () => (
-  <section id="skills" className="min-h-screen flex items-center bg-gray-900">
-    <div className="max-w-6xl mx-auto px-6">
-      <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="text-4xl font-playfair text-center text-white mb-8">
-          Core Competencies
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <SkillCard
-            icon={<FaDrawPolygon />}
-            title="Interior Architecture"
-            description="Space planning, material selection, lighting design"
-          />
-          <SkillCard
-            icon={<FaCube />}
-            title="3D Visualization"
-            description="Photorealistic rendering, VR walkthroughs, BIM modeling"
-          />
-          <SkillCard
-            icon={<FaRulerCombined />}
-            title="Technical Drafting"
-            description="Construction documents, detailing, code compliance"
-          />
-          <SkillCard
-            icon={<FaRegBuilding />}
-            title="Urban Design"
-            description="Site planning, zoning analysis, landscape integration"
-          />
-          <SkillCard
-            icon={<FaPalette />}
-            title="Color Theory"
-            description="Material finishes, psychological impact, trend analysis"
-          />
-          <SkillCard
-            icon={<FaVectorSquare />}
-            title="Parametric Design"
-            description="Algorithmic modeling, computational design, optimization"
-          />
-        </div>
-      </motion.div>
     </div>
   </section>
 );
-
-const About = () => {
-  return (
-    <div>
-      <AboutSection />
-      <SkillsSection />
-    </div>
-  );
-};
 
 export default About;
