@@ -1,88 +1,94 @@
-import { motion } from "framer-motion";
+import React from "react";
+import Slider from "react-slick";
+import background from "../assets/background-1.jpg";
 import revitLogo from "../assets/revit.png";
 import archicadLogo from "../assets/archiCAD.jpg";
 import autocadLogo from "../assets/AutoCAD.png";
 import sketchupLogo from "../assets/sketchup.svg";
-import { useEffect, useRef } from "react";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const tools = [
-  { name: "Revit", logo: revitLogo, className: "revit-logo" },
-  { name: "Archicad", logo: archicadLogo, className: "archicad-logo" },
-  { name: "Autocad", logo: autocadLogo, className: "autocad-logo" },
-  { name: "Sketchup", logo: sketchupLogo, className: "sketchup-logo" }
+  { name: "Revit", logo: revitLogo },
+  { name: "Archicad", logo: archicadLogo },
+  { name: "Autocad", logo: autocadLogo },
+  { name: "Sketchup", logo: sketchupLogo },
 ];
 
 const TechnologiesPage = () => {
-  const carouselRef = useRef(null);
-
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
-
-    // Clone the cards and append them to create a seamless loop
-    const cards = Array.from(carousel.children);
-    cards.forEach((card) => {
-      const clone = card.cloneNode(true);
-      carousel.appendChild(clone);
-    });
-
-    // Start the animation
-    carousel.style.animation = "scroll 20s linear infinite";
-
-    // Pause animation on hover
-    carousel.addEventListener("mouseenter", () => {
-      carousel.style.animationPlayState = "paused";
-    });
-
-    carousel.addEventListener("mouseleave", () => {
-      carousel.style.animationPlayState = "running";
-    });
-  }, []);
+  const settings = {
+    arrows: false, // Remove arrow buttons
+    dots: false, // Remove dots
+    infinite: true,
+    speed: 6000, // Slow speed for continuous sliding effect
+    autoplay: true,
+    autoplaySpeed: 0, // No delay between transitions
+    cssEase: "linear", // Smooth continuous slide
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "0",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          centerMode: true,
+          centerPadding: "0",
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          centerMode: true,
+          centerPadding: "0",
+        },
+      },
+    ],
+  };
 
   return (
-    <section className="py-32 bg-white relative overflow-hidden">
-      {/* Glassy Background */}
-      <div className="absolute inset-0 bg-[url('/path/to/your/image.jpg')] bg-cover bg-center">
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-md"></div>
-      </div>
+    <section
+      id="technologies"
+      className="min-h-screen flex flex-col justify-center relative py-16 overflow-hidden"
+      style={{
+        background: `linear-gradient(rgba(10, 25, 47, 0.9), rgba(2, 12, 27, 0.9)), url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-playfair text-center mb-8 md:mb-12 text-yellow-400">
+          Technologies I Use
+        </h2>
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <h2 className="text-4xl font-playfair text-gray-800 text-center mb-16">
-            Technologies I Use
-          </h2>
-
-          {/* Carousel Container */}
-          <div className="overflow-hidden">
-            <div
-              ref={carouselRef}
-              className="flex gap-8 w-max"
-            >
-              {tools.map((tool, idx) => (
-                <motion.div
-                  key={idx}
-                  className="flex-shrink-0 w-72"
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="flex flex-col items-center p-6 bg-white/20 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all border border-white/10">
-                    <div className="w-full h-40 mb-4 flex items-center justify-center">
-                      <img
-                        src={tool.logo}
-                        alt={tool.name}
-                        className="max-h-24 object-contain"
-                      />
-                    </div>
-                    <h3 className="text-xl font-semibold text-white">{tool.name}</h3>
+        <div className="px-4 sm:px-8">
+          <Slider {...settings}>
+            {tools.map((tool, idx) => (
+              <div
+                key={idx}
+                className="flex justify-center px-1 sm:px-4 focus:outline-none"
+              >
+                <div className="bg-white/80 p-6 rounded-xl border border-yellow-400/30 backdrop-blur-sm transition-shadow duration-300 hover:shadow-xl w-full max-w-[200px]">
+                  <div className="aspect-square flex items-center justify-center mb-4">
+                    <img
+                      src={tool.logo}
+                      alt={tool.name}
+                      className="w-3/4 h-auto object-contain"
+                      loading="lazy"
+                    />
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+                  <h3 className="text-xl md:text-2xl font-semibold text-center text-gray-700">
+                    {tool.name}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </section>
   );

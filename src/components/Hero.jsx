@@ -4,63 +4,62 @@ const Hero = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Height of your fixed header
+      const offset = 80;
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: elementPosition - offset, behavior: "smooth" });
     }
   };
 
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center bg-gradient-to-r from-[#0A192F] to-[#020C1B] pt-20 px-6"
+      className="min-h-screen flex items-center bg-gradient-to-r from-[#0A192F] to-[#020C1B] pt-24 px-4 sm:px-6 lg:px-8"
     >
-      <div className="max-w-5xl mx-auto text-center">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="grid md:grid-cols-2 gap-8 items-center"
         >
-          {/* Rearrange the layout for responsiveness */}
-          <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-            <div className="md:w-1/2 md:order-2">
-              {/* Hero Image on the right */}
-              <img
-                src="https://picsum.photos/id/91/600/400"
-                alt="Aliyu Tasiu Yusuf"
-                className="rounded-lg shadow-lg max-w-full h-auto"
-              />
-            </div>
-            <div className="md:w-1/2 md:order-1">
-              {/* Hero Text and Buttons on the left */}
-              <div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair text-yellow-400 mb-4">
-                  Hello, I'm Aliyu.
-                </h1>
-                <h2 className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-lato mb-6">
-                  I design stunning interiors and architectural models.
-                </h2>
-              </div>
-              <div className="flex justify-center gap-6 mt-6">
-                <button
-                  onClick={() => scrollToSection('portfolio')}
-                  className="px-4 md:px-6 lg:px-8 py-2 md:py-3 lg:py-4 border-2 border-yellow-400 text-yellow-400 font-medium transition-all hover:bg-yellow-400 hover:text-[#0A192F] rounded-lg cursor-pointer"
-                >
-                  View Portfolio
-                </button>
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="px-4 md:px-6 lg:px-8 py-2 md:py-3 lg:py-4 border-2 border-yellow-400 text-yellow-400 font-medium transition-all hover:bg-yellow-400 hover:text-[#0A192F] rounded-lg cursor-pointer"
-                >
-                  Hire Me
-                </button>
-              </div>
+          {/* Text Content */}
+          <div className="space-y-6 text-center md:text-left">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-playfair text-yellow-400">
+              Hello, I'm Aliyu.
+            </h1>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-300 font-lato">
+              I design stunning interiors and architectural models.
+            </h2>
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+              <button
+                onClick={() => scrollToSection('portfolio')}
+                className="px-6 py-3 border-2 border-yellow-400 text-yellow-400 font-medium rounded-lg hover:bg-yellow-400 hover:text-[#0A192F] transition-all"
+              >
+                View Portfolio
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="px-6 py-3 border-2 border-yellow-400 text-yellow-400 font-medium rounded-lg hover:bg-yellow-400 hover:text-[#0A192F] transition-all"
+              >
+                Hire Me
+              </button>
             </div>
           </div>
+
+          {/* Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative aspect-square rounded-xl overflow-hidden shadow-2xl"
+          >
+            <img
+              src="https://picsum.photos/id/91/800/800"
+              alt="Aliyu Tasiu Yusuf"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
+            />
+          </motion.div>
         </motion.div>
       </div>
     </section>
